@@ -1,15 +1,33 @@
+import {
+  NavLink,
+  Route,
+  Routes
+} from "react-router-dom";
+import AddUser from './AddUser';
+import Overview from './Overview';
+import './styles.css';
+
 
 function HomePage() {
   return (
+
     <div className="homepage-container">
-      Homepage works
       <aside>
-        {/* Side bar goes here */}
+        <nav>
+          <ul className="aside-nav-list">
+            <li><NavLink className={({ isActive }) => isActive ? "active" : ""} to="/">Overview</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? "active" : ""} to="/add-user">Add User</NavLink></li>
+          </ul>
+        </nav>
       </aside>
       <main>
-        {/* Main content goes here */}
+        <Routes>
+          <Route path="/" element={<Overview />}></Route>
+          <Route path="/add-user" element={<AddUser />}></Route>
+        </Routes>
       </main>
     </div>
+
   );
 }
 
