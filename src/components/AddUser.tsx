@@ -7,6 +7,7 @@ import {
     Paper,
     Select,
     SelectChangeEvent,
+    Snackbar,
     TextField,
     Typography,
 } from '@mui/material';
@@ -15,15 +16,16 @@ import { countriesData } from '../model/constants';
 import { ICountry } from '../model/monitor.model';
 
 function AddUser() {
-    const [selectedCountry, updateCountry] = useState('')
-    const [count, updateCount] = useState<number>(0)
+    const [selectedCountry, updateCountry] = useState('');
+    const [count, updateCount] = useState<number>(0);
+    const [snackBarMessage, updateSnackbarMsg] = useState<string>('');
 
     const onCountryChange = (e: SelectChangeEvent) => {
-        updateCountry(e.target.value)
-    }
+        updateCountry(e.target.value);
+    };
 
     const onAddUsers = () => {
-        const url = 'http://localhost:3000/countryList'
+        const url = 'http://localhost:3000/countryList';
         fetch(url, {
             method: 'POST',
             headers: {
@@ -34,25 +36,30 @@ function AddUser() {
                 id: selectedCountry,
                 users: count,
             }),
-        })
-        updateCountry('')
-        updateCount(0)
+        }).then(res => {
+            if(res.ok) {
+                updateSnackbarMsg(`Users count has been updated successfully for the country.`);
+            } else {
+                updateSnackbarMsg(res.statusText);
+            }
+        });
+        updateCountry('');
+        updateCount(0);
+    };
+
+    const onSnackbarClose = () => {
+        updateSnackbarMsg('');
     }
 
     return (
         <Container maxWidth="lg" sx={{ height: '100vh', paddingTop: '36px' }}>
             <section className="overview-heading-section">
                 <Typography variant="h4">Add Users</Typography>
-                <Typography>Add users to the country</Typography>
+                <Typography>Enter the users count in the country</Typography>
             </section>
-            <Paper
-                elevation={3}
-                sx={{ height: 'calc(100% - 125px)', padding: '12px 24px' }}
-            >
+            <Paper elevation={3} sx={{ height: 'calc(100% - 160px)', padding: '24px' }}>
                 <FormControl size="medium" sx={{ width: '300px' }}>
-                    <InputLabel id="choose-country">
-                        Select a country
-                    </InputLabel>
+                    <InputLabel id="choose-country">Select a country</InputLabel>
                     <Select
                         labelId="choose-country"
                         id="select-country"
@@ -68,10 +75,7 @@ function AddUser() {
                     </Select>
                 </FormControl>
                 <br />
-                <FormControl
-                    size="medium"
-                    sx={{ width: '300px', marginTop: '32px' }}
-                >
+                <FormControl size="medium" sx={{ width: '300px', marginTop: '32px' }}>
                     <TextField
                         id="users-count-input"
                         type="number"
@@ -79,7 +83,7 @@ function AddUser() {
                         disabled={!selectedCountry}
                         value={count}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            updateCount(Number(e.target.value))
+                            updateCount(Number(e.target.value));
                         }}
                         variant="outlined"
                     />
@@ -94,8 +98,14 @@ function AddUser() {
                     Add Users
                 </Button>
             </Paper>
+            <Snackbar
+                open={Boolean(snackBarMessage)}
+                autoHideDuration={3000}
+                message={snackBarMessage}
+                onClose={onSnackbarClose}
+            />
         </Container>
-    )
+    );
 }
 
-export default AddUser
+export default AddUser;

@@ -1,3 +1,5 @@
+/* Homepage */
+
 .homepage-container {
     height: 100vh;
     display: flex;
@@ -32,6 +34,13 @@ main {
     width: calc(100% - 300px);
 }
 
+ul.aside-nav-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* Overview */
+
 .overview-container {
     display: flex;
 }
@@ -40,12 +49,5 @@ main {
     margin-bottom: 20px;
 }
 
-ul.aside-nav-list {
-    list-style: none;
-    padding: 0;
-}
-
-/* ul.aside-nav-list > li {
-    margin-top: 8px;
-} */
+/* Add User */
 
