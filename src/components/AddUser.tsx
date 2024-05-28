@@ -1,18 +1,18 @@
 import {
-  Button,
-  Container,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Paper,
-  Select,
-  SelectChangeEvent,
-  TextField,
-  Typography,
-} from '@mui/material'
-import { useState } from 'react'
-import { countriesData } from '../model/constants'
-import { ICountry } from '../model/monitor.model'
+    Button,
+    Container,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Paper,
+    Select,
+    SelectChangeEvent,
+    TextField,
+    Typography,
+} from '@mui/material';
+import React, { useState } from 'react';
+import { countriesData } from '../model/constants';
+import { ICountry } from '../model/monitor.model';
 
 function AddUser() {
     const [selectedCountry, updateCountry] = useState('')
