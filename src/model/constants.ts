@@ -1,4 +1,6 @@
 
+export const COUNTRY_LIST_URL = 'https://my-json-server.typicode.com/ragulmurugesan/monitor-users/countryList';
+
 export const countriesData = [
 	{ "code": "AFG", "name": "Afghanistan"},
 	{ "code": "ALB", "name": "Albania"},

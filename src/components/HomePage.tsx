@@ -1,13 +1,11 @@
 import { Snackbar } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
-import { countriesData } from '../model/constants';
+import { COUNTRY_LIST_URL, countriesData } from '../model/constants';
 import { ICountryResponse, MAP_KEYS } from '../model/monitor-users.model';
 import AddUser from './AddUser';
 import Overview from './Overview';
 import './styles.css';
-
-const COUNTRY_LIST_URL = 'http://localhost:3000/countryList';
 
 function HomePage() {
     const [totalUsers, updateUserCount] = useState<number>(0);

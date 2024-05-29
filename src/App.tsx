@@ -1,14 +1,14 @@
 
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import './App.css';
 import HomePage from './components/HomePage';
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <HashRouter>
         <HomePage />
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
