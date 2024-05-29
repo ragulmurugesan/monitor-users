@@ -1,9 +1,6 @@
 import { Container, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
-import { useEffect, useState } from 'react';
 import GeoChart from 'react-google-charts';
-import { countriesData } from '../model/constants';
-import { ICountryResponse } from '../model/monitor.model';
 
 export const options = {
     backgroundColor: '#81d4fa',
@@ -15,31 +12,13 @@ export interface Region {
     Users: number;
 }
 
-function Overview() {
-    const [totalUsers, updateUserCount] = useState<number>();
-    const [countriesList, updateCountriesList] = useState<[string, number | string][]>();
+interface OverviewType {
+    countriesList: [string, number | string][];
+    totalUsers: number;
+}
 
-    const fetchCountries = () => {
-        const url = 'http://localhost:3000/countryList';
-        fetch(url)
-            .then((response) => response.json())
-            .then((data: ICountryResponse[]) => {
-                const result: [string, number | string][] = [['Country', 'Users']];
-                let sumUsers = 0;
-                data.forEach((item) => {
-                    sumUsers += item.users;
-                    countriesData.forEach((country) => {
-                        if (item.id === country.code) {
-                            result.push([country.name, item.users]);
-                        }
-                    });
-                });
-                updateUserCount(sumUsers);
-                updateCountriesList(result);
-            });
-    };
-
-    useEffect(() => fetchCountries(), []);
+function Overview(props: OverviewType) {
+    const { totalUsers, countriesList } = props;
 
     return (
         <Container maxWidth="lg" sx={{ height: '100vh', paddingTop: '36px' }}>

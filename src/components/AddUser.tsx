@@ -7,49 +7,33 @@ import {
     Paper,
     Select,
     SelectChangeEvent,
-    Snackbar,
     TextField,
     Typography,
 } from '@mui/material';
 import React, { useState } from 'react';
 import { countriesData } from '../model/constants';
-import { ICountry } from '../model/monitor.model';
+import { ICountry } from '../model/monitor-users.model';
 
-function AddUser() {
+interface AddUserProps {
+    onAddUser(country: string, count: number): void;
+}
+
+function AddUser(props: AddUserProps) {
+    const { onAddUser } = props;
     const [selectedCountry, updateCountry] = useState('');
-    const [count, updateCount] = useState<number>(0);
-    const [snackBarMessage, updateSnackbarMsg] = useState<string>('');
+    const [count, updateCount] = useState<number | undefined>();
 
     const onCountryChange = (e: SelectChangeEvent) => {
         updateCountry(e.target.value);
     };
 
-    const onAddUsers = () => {
-        const url = 'http://localhost:3000/countryList';
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                id: selectedCountry,
-                users: count,
-            }),
-        }).then(res => {
-            if(res.ok) {
-                updateSnackbarMsg(`Users count has been updated successfully for the country.`);
-            } else {
-                updateSnackbarMsg(res.statusText);
-            }
-        });
+    const onSubmit = () => {
+        if (selectedCountry && count) {
+            onAddUser(selectedCountry, count);
+        }
         updateCountry('');
-        updateCount(0);
+        updateCount(undefined);
     };
-
-    const onSnackbarClose = () => {
-        updateSnackbarMsg('');
-    }
 
     return (
         <Container maxWidth="lg" sx={{ height: '100vh', paddingTop: '36px' }}>
@@ -81,7 +65,7 @@ function AddUser() {
                         type="number"
                         label="Users in the country"
                         disabled={!selectedCountry}
-                        value={count}
+                        value={count || ''}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                             updateCount(Number(e.target.value));
                         }}
@@ -90,20 +74,15 @@ function AddUser() {
                 </FormControl>
                 <br />
                 <Button
+                    type="submit"
                     sx={{ textTransform: 'none', marginTop: '32px' }}
                     variant="contained"
                     disabled={!selectedCountry || !count}
-                    onClick={onAddUsers}
+                    onClick={onSubmit}
                 >
                     Add Users
                 </Button>
             </Paper>
-            <Snackbar
-                open={Boolean(snackBarMessage)}
-                autoHideDuration={3000}
-                message={snackBarMessage}
-                onClose={onSnackbarClose}
-            />
         </Container>
     );
 }

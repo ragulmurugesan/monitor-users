@@ -7,3 +7,8 @@ export interface ICountryResponse {
     id: string,
     users: number
 }
+
+export enum MAP_KEYS {
+    Country = "Country",
+    Users = "Users"
+}
