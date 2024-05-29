@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/monitor-users/static/css/main.3e598b34.css",
+    "main.js": "/monitor-users/static/js/main.f7425076.js",
+    "static/js/453.c225c4a3.chunk.js": "/monitor-users/static/js/453.c225c4a3.chunk.js",
+    "index.html": "/monitor-users/index.html",
+    "main.3e598b34.css.map": "/monitor-users/static/css/main.3e598b34.css.map",
+    "main.f7425076.js.map": "/monitor-users/static/js/main.f7425076.js.map",
+    "453.c225c4a3.chunk.js.map": "/monitor-users/static/js/453.c225c4a3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3e598b34.css",
+    "static/js/main.f7425076.js"
+  ]
+}
