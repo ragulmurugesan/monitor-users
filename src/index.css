@@ -14,7 +14,8 @@ code {
 
 :root {
   --primary-font-color: #606770;
+  --secondary-font-color: #fff;
   --primary-border-color: #dadde1;
   --hover-bg-color: #0000000d;
-  --hyperlink-color: #7a77ff;
+  --side-nav-highlight-color: #3e698d;
 }

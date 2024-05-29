@@ -1,6 +1,9 @@
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { Snackbar } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
+import BigIdLogo from '../assets/big-id-logo.jpg';
 import { COUNTRY_LIST_URL, countriesData } from '../model/constants';
 import { ICountryResponse, MAP_KEYS } from '../model/monitor-users.model';
 import AddUser from './AddUser';
@@ -61,47 +64,66 @@ function HomePage() {
     };
 
     return (
-        <div className="homepage-container">
-            <aside>
-                <nav>
-                    <ul className="aside-nav-list">
-                        <li>
-                            <NavLink
-                                className={({ isActive }) => (isActive ? 'active' : '')}
-                                to="/"
-                            >
-                                Overview
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                className={({ isActive }) => (isActive ? 'active' : '')}
-                                to="/add-user"
-                            >
-                                Add User
-                            </NavLink>
-                        </li>
-                    </ul>
-                </nav>
-            </aside>
-            <main>
-                <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            <Overview countriesList={countriesNamesList} totalUsers={totalUsers} />
-                        }
-                    ></Route>
-                    <Route path="/add-user" element={<AddUser onAddUser={onAddUsers} />}></Route>
-                </Routes>
-                <Snackbar
-                    open={Boolean(snackBarMessage)}
-                    autoHideDuration={3000}
-                    message={snackBarMessage}
-                    onClose={onSnackbarClose}
-                />
-            </main>
-        </div>
+        <>
+            <header>
+                <span>
+                    <img src={BigIdLogo} alt="Big Id logo" />
+                </span>
+                <span>
+                    {/* Icons have been added for presentation purpose only */}
+                    <SettingsOutlinedIcon />
+                    <AccountCircleIcon />
+                </span>
+            </header>
+            <div className="homepage-container">
+                <aside>
+                    <nav>
+                        <ul className="aside-nav-list">
+                            <li>
+                                <NavLink
+                                    className={({ isActive }) => (isActive ? 'active' : '')}
+                                    to="/"
+                                >
+                                    Overview
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    className={({ isActive }) => (isActive ? 'active' : '')}
+                                    to="/add-user"
+                                >
+                                    Add User
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+                <main>
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={
+                                <Overview
+                                    countriesList={countriesNamesList}
+                                    totalUsers={totalUsers}
+                                />
+                            }
+                        ></Route>
+                        <Route
+                            path="/add-user"
+                            element={<AddUser onAddUser={onAddUsers} />}
+                        ></Route>
+                    </Routes>
+                    <Snackbar
+                        open={Boolean(snackBarMessage)}
+                        autoHideDuration={3000}
+                        message={snackBarMessage}
+                        onClose={onSnackbarClose}
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                    />
+                </main>
+            </div>
+        </>
     );
 }
 

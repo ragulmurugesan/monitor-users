@@ -1,4 +1,4 @@
-import { Container, Typography } from '@mui/material';
+import { CircularProgress, Container, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import GeoChart from 'react-google-charts';
 
@@ -21,18 +21,25 @@ function Overview(props: OverviewType) {
     const { totalUsers, countriesList } = props;
 
     return (
-        <Container maxWidth="lg" sx={{ height: '100vh', paddingTop: '36px' }}>
+        <Container maxWidth="lg" sx={{ height: '100%', paddingTop: '36px' }}>
             <section className="overview-heading-section">
                 <Typography variant="h4">Users Monitor Dashboard</Typography>
                 <Typography>Total Users: {totalUsers}</Typography>
             </section>
-            <Paper elevation={3}>
-                <GeoChart
-                    chartType="GeoChart"
-                    width="100%"
-                    data={countriesList}
-                    options={options}
-                />
+            <Paper elevation={3} sx={{ height: 'calc(100% - 106px)' }}>
+                {countriesList.length > 0 ? (
+                    <GeoChart
+                        chartType="GeoChart"
+                        width="100%"
+                        height="100%"
+                        data={countriesList}
+                        options={options}
+                    />
+                ) : (
+                    <div className="spinner">
+                        <CircularProgress />
+                    </div>
+                )}
             </Paper>
         </Container>
     );

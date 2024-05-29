@@ -1,5 +1,9 @@
 
-export const COUNTRY_LIST_URL = 'https://my-json-server.typicode.com/ragulmurugesan/monitor-users/countryList';
+/**
+ * Port has been configured as 3001 for localhost purpose, when deployed it needs to be updated
+ * Please run JSON Server via the command `npx json-server --port 3001 db.json`
+ * */ 
+export const COUNTRY_LIST_URL = 'http://localhost:3001/countryList'; 
 
 export const countriesData = [
 	{ "code": "AFG", "name": "Afghanistan"},

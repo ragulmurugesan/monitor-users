@@ -1,7 +1,24 @@
 /* Homepage */
 
+header {
+    border-bottom: 1px solid var(--primary-border-color);
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header svg {
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+header img {
+    height: 40px;
+}
+
 .homepage-container {
-    height: 100vh;
+    height: calc(100vh - 62px);
     display: flex;
 }
 
@@ -11,23 +28,27 @@ aside {
     padding: 8px;
     gap: 10px;
     flex-direction: column;
-    width: 300px;    
+    width: 300px; 
+    background-color: #424242;
 }
 
 aside a {
     text-decoration: none;
     display: block;
     padding: 6px 16px;
-    color: var(--primary-font-color);
+    color: var(--secondary-font-color);
+    margin-bottom: 4px;
+    border-radius: 4px;
 }
 
 a:hover {
-    background-color: var(--hover-bg-color);
+    background-color: var(--side-nav-highlight-color);
+    color: var(--secondary-font-color);
 }
 
 a.active {
-    background-color: var(--hover-bg-color);
-    color: var(--hyperlink-color);
+    background-color: var(--side-nav-highlight-color);
+    color: var(--secondary-font-color);
 }
 
 main {
@@ -47,6 +68,13 @@ ul.aside-nav-list {
 
 .overview-heading-section {
     margin-bottom: 20px;
+}
+
+.spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 120px);
 }
 
 /* Add User */
