@@ -4,16 +4,16 @@ import { Snackbar } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import BigIdLogo from '../assets/big-id-logo.jpg';
-import { COUNTRY_LIST_URL, countriesData } from '../model/constants';
-import { ICountryResponse, MAP_KEYS } from '../model/monitor-users.model';
+import { COUNTRY_LIST_URL } from '../model/constants';
+import { ICountry, ICountryResponse, MAP_KEYS } from '../model/monitor-users.model';
 import AddUser from './AddUser';
 import Overview from './Overview';
 import './styles.css';
 
 function HomePage() {
     const [totalUsers, updateUserCount] = useState<number>(0);
-    const [countriesNamesList, updateCountriesList] = useState<[string, number | string][]>([]); // contains the country name and users count
-    const [countriesResponseList, updateCountriesResponseList] = useState<ICountryResponse[]>([]); // contains the country code(id) with users count
+    const [countriesChartData, updateCountriesChartData] = useState<[string, number | string][]>([]); // contains the country name and users count - for the React Geo Chart
+    const [countriesResponseList, updateCountriesResponseList] = useState<ICountryResponse[]>([]); // Response from the API fetch - contains the country code(id) with users count
     const [snackBarMessage, updateSnackbarMsg] = useState<string>('');
 
     useEffect(() => fetchCountries(), []);
@@ -21,32 +21,31 @@ function HomePage() {
     const fetchCountries = () => {
         fetch(COUNTRY_LIST_URL)
             .then((response) => response.json())
-            .then((data: ICountryResponse[]) => {
-                const result: [string, number | string][] = [[MAP_KEYS.Country, MAP_KEYS.Users]];
+            .then((countryResponse: ICountryResponse[]) => {
+                const chartData: [string, number | string][] = [[MAP_KEYS.Country, MAP_KEYS.Users]];
                 let sumUsers = 0;
-                data.forEach((item) => {
+                countryResponse.forEach((item) => {
                     sumUsers += item.users;
-                    countriesData.forEach((country) => {
-                        if (item.id === country.code) {
-                            result.push([country.name, item.users]);
-                        }
-                    });
+                    chartData.push([item.name, item.users]);               
                 });
-                updateCountriesResponseList(data);
+                updateCountriesResponseList(countryResponse);
                 updateUserCount(sumUsers);
-                updateCountriesList(result);
+                updateCountriesChartData(chartData);
             });
     };
 
-    const onAddUsers = (countryCode: string, count: number) => {
-        const countryAlreadyAdded = countriesResponseList.find(
-            (country) => country.id === countryCode
+    const onAddUsers = (countryObj: ICountry, count: number) => {
+        // If we use name instead of code to compare its existence, we need not maintain a seperate variable called 'countriesResponseList'
+        // But its ideal to use id hence we are store the response list this way.
+        const countryAlreadyAdded = countriesResponseList.some(
+            (country) => country.id === countryObj.code
         );
-        const url = countryAlreadyAdded ? COUNTRY_LIST_URL + '/' + countryCode : COUNTRY_LIST_URL;
+        const url = countryAlreadyAdded ? COUNTRY_LIST_URL + '/' + countryObj.code : COUNTRY_LIST_URL;
         fetch(url, {
             method: countryAlreadyAdded ? 'PUT' : 'POST',
             body: JSON.stringify({
-                id: countryCode,
+                id: countryObj.code,
+                name: countryObj.name,
                 users: count,
             }),
         }).then((response) => {
@@ -104,7 +103,7 @@ function HomePage() {
                             path="/"
                             element={
                                 <Overview
-                                    countriesList={countriesNamesList}
+                                    countriesList={countriesChartData}
                                     totalUsers={totalUsers}
                                 />
                             }

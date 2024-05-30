@@ -1,5 +1,9 @@
 /* Homepage */
 
+body {
+    background-color: #f1f3f8;
+}
+
 header {
     border-bottom: 1px solid var(--primary-border-color);
     padding: 8px;

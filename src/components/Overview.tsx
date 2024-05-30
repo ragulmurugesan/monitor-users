@@ -26,7 +26,7 @@ function Overview(props: OverviewType) {
                 <Typography variant="h4">Users Monitor Dashboard</Typography>
                 <Typography>Total Users: {totalUsers}</Typography>
             </section>
-            <Paper elevation={3} sx={{ height: 'calc(100% - 106px)' }}>
+            <Paper square={false} elevation={3} sx={{ height: 'calc(100% - 106px)', borderRadius: '10px' }}>
                 {countriesList.length > 0 ? (
                     <GeoChart
                         chartType="GeoChart"

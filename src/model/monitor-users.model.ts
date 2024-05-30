@@ -5,6 +5,7 @@ export interface ICountry {
 
 export interface ICountryResponse {
     id: string,
+    name: string,
     users: number
 }
 

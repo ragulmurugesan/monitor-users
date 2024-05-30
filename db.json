@@ -2,91 +2,48 @@
   "countryList": [
     {
       "id": "IND",
-      "users": 100
-    },
-    {
-      "id": "DZA",
-      "users": 200
-    },
-    {
-      "id": "ATA",
-      "users": 43
+      "name": "India",
+      "users": 287
     },
     {
       "id": "AFG",
-      "users": 879
-    },
-    {
-      "id": "ARG",
-      "users": 22
-    },
-    {
-      "id": "BEL",
-      "users": 488
-    },
-    {
-      "id": "ASM",
-      "users": 22
-    },
-    {
-      "id": "BEN",
-      "users": 1000
-    },
-    {
-      "id": "AUS",
-      "users": 1000
-    },
-    {
-      "id": "CXR",
-      "users": 22
-    },
-    {
-      "id": "ATG",
-      "users": 22
-    },
-    {
-      "id": "CHN",
-      "users": 100
-    },
-    {
-      "id": "GNQ",
-      "users": 343
-    },
-    {
-      "id": "GRL",
+      "name": "Afghanistan",
       "users": 1200
     },
     {
-      "id": "AND",
-      "users": 22
+      "id": "RUS",
+      "name": "Russian Federation (the)",
+      "users": 299
     },
     {
-      "id": "AGO",
-      "users": 11
+      "id": "PAK",
+      "name": "Pakistan",
+      "users": 244
     },
     {
-      "id": "EGY",
-      "users": 3000
+      "id": "ALB",
+      "name": "Albania",
+      "users": 500
     },
     {
-      "id": "CAN",
-      "users": 2300
+      "id": "AUS",
+      "name": "Australia",
+      "users": 234
     },
     {
-      "id": "QAT",
-      "users": 1000
+      "id": "ARG",
+      "name": "Argentina",
+      "users": 500
     },
     {
-      "id": "USA",
-      "users": 4000
+      "id": "ABW",
+      "name": "Aruba",
+      "users": 222
     },
     {
-      "id": "POL",
-      "users": 2000
-    },
-    {
-      "id": "SLV",
-      "users": 43
+      "id": "NGA",
+      "name": "Nigeria",
+      "users": 987
     }
   ]
 }
