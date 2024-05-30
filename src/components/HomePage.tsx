@@ -3,7 +3,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { Snackbar } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
-import BigIdLogo from '../assets/big-id-logo.jpg';
+import BigIdLogo from '../assets/big-id-logo_processed.png';
 import { COUNTRY_LIST_URL } from '../model/constants';
 import { ICountry, ICountryResponse, MAP_KEYS } from '../model/monitor-users.model';
 import AddUser from './AddUser';

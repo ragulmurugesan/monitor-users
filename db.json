@@ -3,12 +3,12 @@
     {
       "id": "IND",
       "name": "India",
-      "users": 287
+      "users": 300
     },
     {
       "id": "AFG",
       "name": "Afghanistan",
-      "users": 1200
+      "users": 200
     },
     {
       "id": "RUS",
@@ -43,7 +43,7 @@
     {
       "id": "NGA",
       "name": "Nigeria",
-      "users": 987
+      "users": 2000
     }
   ]
 }
